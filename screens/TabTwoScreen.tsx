@@ -1,5 +1,9 @@
+// https://jsonplaceholder.typicode.com/todos/1
 import * as React from "react"
 import { FlatList, SafeAreaView, StyleSheet } from "react-native"
+
+import { Card, ListItem, Button, Avatar } from "react-native-elements"
+import Icon from "react-native-vector-icons/FontAwesome"
 
 import EditScreenInfo from "../components/EditScreenInfo"
 import { Text, View } from "../components/Themed"
@@ -22,43 +26,28 @@ const DATA = [
     title: "Third Item2",
   },
   {
-    id: "58694a0f-3da1-471f-bd96-145571e29d73",
+    id: "58694a0f-3da1-471f-bd96-145571e29d74",
     title: "Third Item3",
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e29d73",
-    title: "Third Item4",
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e29d73",
-    title: "Third Item5",
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e29d73",
-    title: "Third Item6",
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e29d73",
-    title: "Third Item7",
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e29d73",
-    title: "Third Item8",
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e29d73",
-    title: "Third Item9",
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e29d73",
-    title: "Third Item10",
   },
 ]
 
+const Heart = () => <Icon name="heart" size={15} color="red" />
+
 const Item = ({ title }: { title: string }) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-  </View>
+  <Card containerStyle={styles.card}>
+    <Avatar
+      rounded
+      source={{
+        uri:
+          "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
+      }}
+    ></Avatar>
+    <Text style={{ marginBottom: 10 }}>{title}</Text>
+    <Card.Divider />
+    <Text>Oi</Text>
+    <Card.Divider />
+    <Button icon={<Heart />} />
+  </Card>
 )
 
 export default function TabTwoScreen() {
@@ -66,6 +55,7 @@ export default function TabTwoScreen() {
 
   return (
     <FlatList
+      style={styles.flatList}
       data={DATA}
       renderItem={renderItem}
       keyExtractor={(item) => item.id}
@@ -74,6 +64,17 @@ export default function TabTwoScreen() {
 }
 
 const styles = StyleSheet.create({
+  flatList: {
+    backgroundColor: "#ffeae4",
+  },
+  card: {
+    borderRadius: 20,
+    borderWidth: 0,
+    shadowOffset: { width: 2, height: 4 },
+    shadowColor: "gray",
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
+  },
   container: {
     flex: 1,
     alignItems: "center",
@@ -93,5 +94,9 @@ const styles = StyleSheet.create({
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
+  },
+  tinyLogo: {
+    width: 50,
+    height: 50,
   },
 })
