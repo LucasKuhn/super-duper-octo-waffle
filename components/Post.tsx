@@ -13,7 +13,13 @@ import { Avatar, Card, Button } from "react-native-elements"
 import Icon from "react-native-vector-icons/FontAwesome"
 
 interface Props {
-  text: string
+  item: Item
+}
+
+interface Item {
+  id: number
+  releaseYear: number
+  title: string
 }
 
 interface State {
@@ -29,6 +35,7 @@ const Post = (props: Props) => {
   const Heart = () => <Icon name="heart" size={15} color="red" />
 
   const toggleExpanded = () => {
+    console.log("pressed")
     setCollapsed(!collapsed)
   }
 
@@ -37,42 +44,23 @@ const Post = (props: Props) => {
   }
 
   return (
-    <Card containerStyle={styles.card}>
-      <Avatar
-        rounded
-        source={{
-          uri:
-            "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
-        }}
-      ></Avatar>
-      <Text style={{ marginBottom: 10 }}>{props.text}</Text>
-      <Card.Divider style={{ marginBottom: 0 }} />
-      <View>
+    <View>
+      <Card containerStyle={styles.card}>
+        <Avatar
+          rounded
+          source={{
+            uri:
+              "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
+          }}
+        ></Avatar>
         <Collapsible
           collapsed={collapsed}
-          align="top"
-          collapsedHeight={80}
+          collapsedHeight={20}
           onAnimationEnd={handleAnimationEnd}
-          style={styles.content}
         >
-          <Text>
-            Bacon ipsum dolor amet chuck turducken landjaeger tongue spare ribs
-          </Text>
-          <Text>
-            Bacon ipsum dolor amet chuck turducken landjaeger tongue spare ribs
-          </Text>
-          <Text>
-            Bacon ipsum dolor amet chuck turducken landjaeger tongue spare ribs
-          </Text>
-          <Text>
-            Bacon ipsum dolor amet chuck turducken landjaeger tongue spare ribs
-          </Text>
-          <Text>
-            Bacon ipsum dolor amet chuck turducken landjaeger tongue spare ribs
-          </Text>
-          <Text>
-            Bacon ipsum dolor amet chuck turducken landjaeger tongue spare ribs
-          </Text>
+          <View>
+            <Text style={{ padding: 10 }}>{props.item.title}</Text>
+          </View>
         </Collapsible>
         <Pressable
           onPressOut={toggleExpanded}
@@ -83,10 +71,10 @@ const Post = (props: Props) => {
             style={styles.linearGradient}
           />
         </Pressable>
-      </View>
-      <Card.Divider />
-      <Button icon={<Heart />} />
-    </Card>
+        <Card.Divider />
+        <Button icon={<Heart />} onPress={toggleExpanded} />
+      </Card>
+    </View>
   )
 }
 
