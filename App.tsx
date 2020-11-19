@@ -3,21 +3,23 @@ import React from "react"
 import { SafeAreaProvider } from "react-native-safe-area-context"
 
 import useCachedResources from "./hooks/useCachedResources"
-import useColorScheme from "./hooks/useColorScheme"
-import Navigation from "./navigation"
+import Navigation from "./navigation/Navigation"
+import { AppLoading } from "expo"
+import { useFonts, Poppins_400Regular } from "@expo-google-fonts/poppins"
 
 export default function App() {
   const isLoadingComplete = useCachedResources()
-  const colorScheme = useColorScheme()
-  // const colorScheme = "light"
+  let [fontsLoaded] = useFonts({
+    Poppins_400Regular,
+  })
 
-  if (!isLoadingComplete) {
-    return null
+  if (!isLoadingComplete || !fontsLoaded) {
+    return <AppLoading />
   } else {
     return (
       <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
         <StatusBar />
+        <Navigation />
       </SafeAreaProvider>
     )
   }

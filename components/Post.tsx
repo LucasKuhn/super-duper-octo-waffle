@@ -2,9 +2,9 @@ import React, { useState } from "react"
 import {
   Text,
   TouchableOpacity,
-  View,
   StyleSheet,
   Pressable,
+  View,
 } from "react-native"
 import Collapsible from "react-native-collapsible"
 import { LinearGradient } from "expo-linear-gradient"

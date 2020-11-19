@@ -9,9 +9,6 @@ import TabOneScreen from "../screens/TabOneScreen"
 import TabTwoScreen from "../screens/TabTwoScreen"
 import { BottomTabParamList, TabOneParamList, TabTwoParamList } from "../types"
 
-import { useFonts, Poppins_400Regular } from "@expo-google-fonts/poppins"
-import { AppLoading } from "expo"
-
 const BottomTab = createBottomTabNavigator<BottomTabParamList>()
 
 export default function BottomTabNavigator() {
@@ -69,26 +66,18 @@ function TabOneNavigator() {
 const TabTwoStack = createStackNavigator<TabTwoParamList>()
 
 function TabTwoNavigator() {
-  let [fontsLoaded] = useFonts({
-    Poppins_400Regular,
-  })
-
-  if (!fontsLoaded) {
-    return <AppLoading />
-  } else {
-    return (
-      <TabTwoStack.Navigator>
-        <TabTwoStack.Screen
-          name="TabTwoScreen"
-          component={TabTwoScreen}
-          options={{
-            title: "💬 Recomendo 👌",
-            headerTitleStyle: {
-              fontFamily: "Poppins_400Regular",
-            },
-          }}
-        />
-      </TabTwoStack.Navigator>
-    )
-  }
+  return (
+    <TabTwoStack.Navigator>
+      <TabTwoStack.Screen
+        name="TabTwoScreen"
+        component={TabTwoScreen}
+        options={{
+          title: "💬 Recomendo 👌",
+          headerTitleStyle: {
+            fontFamily: "Poppins_400Regular",
+          },
+        }}
+      />
+    </TabTwoStack.Navigator>
+  )
 }

@@ -34,7 +34,7 @@ export default function TabTwoScreen() {
 
   return isLoading ? (
     <View style={[styles.container]}>
-      <ActivityIndicator color="#ff6056" size="large" />
+      <Spinner />
     </View>
   ) : (
     <FlatList
